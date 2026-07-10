@@ -1,0 +1,21 @@
+# Compiled agility / bytecode
+*.class
+*.jar
+*.war
+*.ear
+
+# Build directories
+target/
+build/
+.gradle/
+
+# Virtual environments / secret keys
+.env
+*.local
+
+# VS Code / IDE metadata
+.settings/
+.project
+.classpath
+.factorypath
+.vscode/
