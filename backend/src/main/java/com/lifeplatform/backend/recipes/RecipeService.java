@@ -17,6 +17,13 @@ public class RecipeService {
         if (recipe.getPreparationTimeMinutes() != null && recipe.getPreparationTimeMinutes() <= 0) {
             throw new IllegalArgumentException("El tiempo de preparación debe ser mayor a 0 minutos");
         }
+
+        if (recipe.getIngredients() != null) {
+            for (RecipeIngredient ingredient : recipe.getIngredients()) {
+                ingredient.setRecipe(recipe); // Le decimos al ingrediente a qué receta pertenece
+            }
+        }
+        
         return recipeRepository.save(recipe);
     }
 

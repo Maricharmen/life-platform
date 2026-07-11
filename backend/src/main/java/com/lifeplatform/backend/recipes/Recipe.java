@@ -31,5 +31,9 @@ public class Recipe {
     
     @Column(length = 2000)
     private String instructions; 
+
+    @com.fasterxml.jackson.annotation.JsonManagedReference
+    @jakarta.persistence.OneToMany(mappedBy = "recipe", cascade = jakarta.persistence.CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<RecipeIngredient> ingredients = new java.util.ArrayList<>();
     
 }
