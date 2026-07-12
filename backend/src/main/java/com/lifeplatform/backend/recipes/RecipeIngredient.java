@@ -1,6 +1,6 @@
 package com.lifeplatform.backend.recipes;
 
-import com.lifeplatform.backend.pantry.PantryItem;
+import com.lifeplatform.backend.catalog.MarketItem;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,9 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "recipe_ingredients")
@@ -21,16 +21,15 @@ public class RecipeIngredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idRecipeIngredient;
 
-    @com.fasterxml.jackson.annotation.JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "recipe_id", nullable = false)
+    @JoinColumn(name = "id_recipe", nullable = false)
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name = "pantry_item_id", nullable = false)
-    private PantryItem pantryItem;
+    @JoinColumn(name = "id_market_item", nullable = false)
+    private MarketItem marketItem;
 
     private Double quantityRequired;
     private String unitRequired;

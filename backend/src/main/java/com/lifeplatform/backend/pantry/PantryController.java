@@ -23,8 +23,27 @@ public class PantryController {
 
 
     @PostMapping
-    public ResponseEntity createPantryItem(@RequestBody PantryItem item) {
+    public ResponseEntity<PantryItem> createPantryItem(@RequestBody PantryItem item) {
         PantryItem savedItem = pantryService.saveOrUpdateItem(item);
         return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PantryItem> getPantryItem(@PathVariable Long id) {
+        return pantryService.getById(id)
+                .map(item -> new ResponseEntity<>(item, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PantryItem> updatePantryItem(@PathVariable Long id, @RequestBody PantryItem item) {
+        PantryItem updated = pantryService.updateItem(id, item);
+        return new ResponseEntity<>(updated, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePantryItem(@PathVariable Long id) {
+        pantryService.deleteItem(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
