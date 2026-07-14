@@ -25,12 +25,12 @@ public class RecipeIngredient {
     private Long idRecipeIngredient;
 
     @ManyToOne
-    @JoinColumn(name = "id_recipe", nullable = false)
+    @JoinColumn(name = "recipe_id", nullable = false)
     @JsonBackReference
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name = "id_market_item", nullable = false)
+    @JoinColumn(name = "market_item_id", nullable = false)
     private MarketItem marketItem;
 
     private Double quantityRequired;
