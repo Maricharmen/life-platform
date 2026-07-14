@@ -1,6 +1,7 @@
 package com.lifeplatform.backend.recipes;
 
 import com.lifeplatform.backend.catalog.MarketItem;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class RecipeIngredient {
 
     @ManyToOne
     @JoinColumn(name = "id_recipe", nullable = false)
+    @JsonBackReference
     private Recipe recipe;
 
     @ManyToOne

@@ -1,31 +1,30 @@
 package com.lifeplatform.backend.pantry;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/pantry")
 public class PantryController {
 
-    @Autowired
-    private PantryService pantryService; 
+    private final PantryService pantryService;
 
-    @GetMapping
-    public ResponseEntity getAllPantryItems() {
-        List items = pantryService.getAllItems();
-        return new ResponseEntity<>(items, HttpStatus.OK);
+    public PantryController(PantryService pantryService) {
+        this.pantryService = pantryService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<PantryItem>> getAllPantryItems() {
+        return new ResponseEntity<>(pantryService.getAllItems(), HttpStatus.OK);
+    }
 
     @PostMapping
-    public ResponseEntity<PantryItem> createPantryItem(@RequestBody PantryItem item) {
-        PantryItem savedItem = pantryService.saveOrUpdateItem(item);
-        return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+    public ResponseEntity<PantryItem> createPantryItem(@Valid @RequestBody AddPantryItemRequestDTO request) {
+        return new ResponseEntity<>(pantryService.addToPantry(request), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -36,9 +35,9 @@ public class PantryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PantryItem> updatePantryItem(@PathVariable Long id, @RequestBody PantryItem item) {
-        PantryItem updated = pantryService.updateItem(id, item);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
+    public ResponseEntity<PantryItem> updatePantryItem(@PathVariable Long id,
+                                                        @Valid @RequestBody UpdatePantryItemRequestDTO request) {
+        return new ResponseEntity<>(pantryService.updateQuantity(id, request), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -23,7 +23,7 @@ public class PantryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPantryItem;
 
-    private String name;
+    private String ingredientName;
     private Double quantity;
     private String unit;
 

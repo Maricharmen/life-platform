@@ -8,17 +8,17 @@ import java.util.Optional;
 public class MockAiMatchingAgent implements AiMatchingAgent {
 
     @Override
-    public Optional<String> standardizeIngredient(String rawIngredientName) {
-        if (rawIngredientName == null || rawIngredientName.isBlank()) {
+    public Optional<String> standardizeIngredient(String rawName) {
+        if (rawName == null || rawName.isBlank()) {
             return Optional.empty();
         }
 
-        String normalized = rawIngredientName.trim().toLowerCase();
+        String normalized = rawName.trim().toLowerCase();
         return switch (normalized) {
             case "avena", "avena integral" -> Optional.of("Avena");
             case "arroz" -> Optional.of("Arroz");
             case "pollo", "pechuga" -> Optional.of("Pollo");
-            default -> Optional.of(rawIngredientName.trim());
+            default -> Optional.of(rawName.trim());
         };
     }
 }

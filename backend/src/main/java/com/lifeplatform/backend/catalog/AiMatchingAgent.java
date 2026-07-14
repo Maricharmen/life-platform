@@ -4,8 +4,8 @@ import java.util.Optional;
 
 public interface AiMatchingAgent {
     /**
-     * Toma el texto libre de un ingrediente y devuelve su equivalente estandarizado.
+     * Takes free-text ingredient input and returns its standardized equivalent.
      */
-    // TODO: Conectar con Spring AI (OpenAI/Gemini) en producción.
-    Optional<String> standardizeIngredient(String rawIngredientName);
+    // TODO: Integrate with Spring AI (OpenAI/Gemini) in production.
+    Optional<String> standardizeIngredient(String rawName);
 }

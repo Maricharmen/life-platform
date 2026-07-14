@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Map;
 
 @Data
@@ -17,15 +16,4 @@ public class RecipeCostReportDTO {
     private Supermarket selectedSupermarket;
     private Double totalCost;
     private Map<Supermarket, Double> costBySupermarket;
-    private List<IngredientCostDTO> ingredientCosts;
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class IngredientCostDTO {
-        private String ingredientName;
-        private Double quantityRequired;
-        private String unit;
-        private Map<Supermarket, Double> costBySupermarket;
-    }
 }

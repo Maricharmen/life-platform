@@ -15,6 +15,7 @@ public class ShoppingPlanReportDTO {
     private List<ShoppingItemDTO> itemsToBuy;
     private Map<Supermarket, Double> totalCostBySupermarket;
     private Supermarket cheapestSupermarket;
+    private Double cheapestTotalCost;
 
     @Data
     @NoArgsConstructor
@@ -23,8 +24,5 @@ public class ShoppingPlanReportDTO {
         private String ingredientName;
         private Double quantityToBuy;
         private String unit;
-        private Double packagePrice;
-        private Integer packagesNeeded;
-        private Double estimatedCost;
     }
 }

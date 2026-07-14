@@ -10,7 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface PantryRepository extends JpaRepository<PantryItem, Long> {
-    Optional findByNameIgnoreCase(String name);
+    Optional<PantryItem> findByIngredientNameIgnoreCase(String ingredientName);
 
     List<PantryItem> findByMarketItem(MarketItem marketItem);
+
+    Optional<PantryItem> findByMarketItem_IdMarketItem(Long idMarketItem);
 }
