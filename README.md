@@ -1,1 +1,1 @@
-# life-platform
+# Grocery Planning Platform 
